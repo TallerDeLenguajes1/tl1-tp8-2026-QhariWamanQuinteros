@@ -1,4 +1,5 @@
-﻿using EspacioTarea;
+﻿using EspacioFunciones;
+using EspacioTarea;
 List<Tarea> tareasPendientes = new List<Tarea>();
 List<Tarea> tareasRealizadas = new List<Tarea>();
 List<Tarea> tareasBuscadas = new List<Tarea>();
@@ -10,6 +11,7 @@ do
 
     do
     {
+        Console.WriteLine("--------------------------");
         Console.WriteLine("Presione 1 para agregar tareas pendientes.");
         Console.WriteLine("Presione 2 para marcar tareas pendientes como realizadas.");
         Console.WriteLine("Presione 3 para ver la lista de tareas pendientes.");
@@ -25,32 +27,47 @@ do
     switch (opcion)
     {
         case 1:
-            int cantTareas = PedirCantidadDeTareasAlUsuario();
-            CargarTareas(cantTareas, tareasPendientes, ref id);
+            int cantTareas = Funciones.PedirCantidadDeTareasAlUsuario();
+            Funciones.CargarTareas(cantTareas, tareasPendientes, ref id);
             break;
         case 2:
             Console.WriteLine("Ingrese la descripcion de la tarea realizada");
             buff = Console.ReadLine();
-            BuscarTareas(tareasPendientes, tareasBuscadas, buff);
-            MoverTareas(tareasPendientes, tareasRealizadas, tareasBuscadas);
-            tareasBuscadas.Clear();
+            Funciones.BuscarTareas(tareasPendientes, tareasBuscadas, buff);
+            if (tareasBuscadas.Count > 0)
+            {
+                Funciones.MoverTareas(tareasPendientes, tareasRealizadas, tareasBuscadas);
+                tareasBuscadas.Clear();
+            }
+            else
+            {
+                Console.WriteLine("El valor ingresado no corresponde a la descripcion de ninguna tarea pendiente");
+            }
             break;
         case 3:
             Console.WriteLine("\tTAREAS PENDIENTES");
-            MostrarLista(tareasPendientes);
+            Funciones.MostrarLista(tareasPendientes);
             break;
         case 4:
             Console.WriteLine("\tTAREAS REALIZADAS");
-            MostrarLista(tareasRealizadas);
+            Funciones.MostrarLista(tareasRealizadas);
             break;
         case 5:
             Console.WriteLine("Ingrese la descripcion de la tarea pendiente que quiere buscar");
             buff = Console.ReadLine();
-            BuscarTareas(tareasPendientes, tareasBuscadas, buff);
-            MostrarLista(tareasBuscadas);
-            tareasBuscadas.Clear();
+            Funciones.BuscarTareas(tareasPendientes, tareasBuscadas, buff);
+            if (tareasBuscadas.Count > 0)
+            {
+                Console.WriteLine("\tTAREAS PENDIENTES");
+                Funciones.MostrarLista(tareasBuscadas);
+                tareasBuscadas.Clear();
+            }
+            else
+            {
+                Console.WriteLine("El valor ingresado no corresponde a la descripcion de ninguna tarea pendiente");
+            }
             break;
-        default:
+        case 6:
             Console.WriteLine("Gracias por usar nuestra aplicacion");
             break;
     }
@@ -69,6 +86,7 @@ for (int i = 0; i < tareasPendientes.Count; i++)
 }
 */
 
+/*
 int PedirCantidadDeTareasAlUsuario()
 {
     int cantidadDeTareas;
@@ -133,3 +151,4 @@ void MoverTareas(List<Tarea> listaDeTareasQuitar, List<Tarea> listaDeTareasAgreg
         listaDeTareasQuitar.Remove(tarea);
     }
 }
+*/
