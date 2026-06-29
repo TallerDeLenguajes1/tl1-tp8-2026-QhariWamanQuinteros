@@ -1,4 +1,4 @@
-﻿using EspacioFunciones;
+﻿//using EspacioFunciones;
 using EspacioTarea;
 List<Tarea> tareasPendientes = new List<Tarea>();
 List<Tarea> tareasRealizadas = new List<Tarea>();
@@ -27,16 +27,16 @@ do
     switch (opcion)
     {
         case 1:
-            int cantTareas = Funciones.PedirCantidadDeTareasAlUsuario();
-            Funciones.CargarTareas(cantTareas, tareasPendientes, ref id);
+            int cantTareas = Tarea.PedirCantidadDeTareasAlUsuario();
+            Tarea.CargarTareas(cantTareas, tareasPendientes, ref id);
             break;
         case 2:
             Console.WriteLine("Ingrese la descripcion de la tarea realizada");
             buff = Console.ReadLine();
-            Funciones.BuscarTareas(tareasPendientes, tareasBuscadas, buff);
+            Tarea.BuscarTareas(tareasPendientes, tareasBuscadas, buff);
             if (tareasBuscadas.Count > 0)
             {
-                Funciones.MoverTareas(tareasPendientes, tareasRealizadas, tareasBuscadas);
+                Tarea.MoverTareas(tareasPendientes, tareasRealizadas, tareasBuscadas);
                 tareasBuscadas.Clear();
             }
             else
@@ -46,20 +46,20 @@ do
             break;
         case 3:
             Console.WriteLine("\tTAREAS PENDIENTES");
-            Funciones.MostrarLista(tareasPendientes);
+            Tarea.MostrarLista(tareasPendientes);
             break;
         case 4:
             Console.WriteLine("\tTAREAS REALIZADAS");
-            Funciones.MostrarLista(tareasRealizadas);
+            Tarea.MostrarLista(tareasRealizadas);
             break;
         case 5:
             Console.WriteLine("Ingrese la descripcion de la tarea pendiente que quiere buscar");
             buff = Console.ReadLine();
-            Funciones.BuscarTareas(tareasPendientes, tareasBuscadas, buff);
+            Tarea.BuscarTareas(tareasPendientes, tareasBuscadas, buff);
             if (tareasBuscadas.Count > 0)
             {
                 Console.WriteLine("\tTAREAS PENDIENTES");
-                Funciones.MostrarLista(tareasBuscadas);
+                Tarea.MostrarLista(tareasBuscadas);
                 tareasBuscadas.Clear();
             }
             else
